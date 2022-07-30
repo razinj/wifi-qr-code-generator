@@ -1,0 +1,48 @@
+.wrapper {
+  margin: 10px;
+  padding: 10px;
+  border: 2.5px dashed gray;
+  border-radius: 5px;
+  width: 600px;
+}
+
+.input_wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+}
+
+.checkbox_input,
+.radio_input {
+  width: auto;
+  flex-direction: row;
+}
+
+.checkbox_input input {
+  margin: 0;
+}
+
+.checkbox_input label {
+  margin: 2px 0 0 5px;
+}
+
+.input_wrapper {
+  /* margin-bottom: 20px; */
+}
+
+.radio_input_wrapper:first-child {
+  margin-bottom: 0;
+}
+
+.radio_input input {
+  margin: 0;
+}
+
+.radio_input label {
+  margin-left: 5px;
+}
+
+.radio_input_wrapper,
+.checkbox_input_wrapper {
+  /* margin-bottom: 20px; */
+}

@@ -1,0 +1,23 @@
+.wrapper {
+  margin: 10px;
+  padding: 10px;
+  border: 2.5px dashed gray;
+  border-radius: 5px;
+  width: 600px;
+}
+
+.bottom_section_wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.bottom_hint_text {
+  font-size: 20px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.top_section_wrapper {
+  display: flex;
+}

@@ -1,10 +1,17 @@
-import type { FC } from 'react'
+// React
+import { FC } from 'react'
+// Components
+import Settings from './components/Settings'
+import DisplayCard from './components/DisplayCard'
+// Contexts
+import SettingsContextWrapper from './contexts/SettingsContextWrapper'
 
 const App: FC = () => {
   return (
-    <div>
-      <h1>Wifi QR Code Generator App</h1>
-    </div>
+    <SettingsContextWrapper>
+      <Settings />
+      <DisplayCard />
+    </SettingsContextWrapper>
   )
 }
 
