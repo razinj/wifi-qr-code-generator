@@ -1,0 +1,16 @@
+.wrapper {
+  height: 50px;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.wrapper div {
+  display: flex;
+  align-items: center;
+}
+
+.app_name {
+  font-weight: 600;
+}

@@ -1,23 +1,36 @@
 .wrapper {
-  margin: 10px;
   padding: 10px;
+
   border: 2.5px dashed gray;
   border-radius: 5px;
-  width: 600px;
+}
+
+.top_section_wrapper {
+  display: flex;
+}
+
+.info_wrapper {
+  margin-left: 10px;
+
+  font-size: x-large;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.info_title {
+  font-size: small;
 }
 
 .bottom_section_wrapper {
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
 }
 
 .bottom_hint_text {
   font-size: 20px;
   font-weight: bold;
   text-transform: uppercase;
-}
-
-.top_section_wrapper {
-  display: flex;
 }
