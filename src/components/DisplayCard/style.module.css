@@ -7,12 +7,16 @@
 
 .top_section_wrapper {
   display: flex;
+  align-items: center;
 }
 
 .info_wrapper {
+  width: 100%;
+
   margin-left: 10px;
 
   font-size: x-large;
+  word-wrap: anywhere;
 
   display: flex;
   flex-direction: column;
@@ -33,4 +37,14 @@
   font-size: 20px;
   font-weight: bold;
   text-transform: uppercase;
+}
+
+.no_data_msg {
+  text-align: center;
+}
+
+@media only screen and (max-width: 600px) {
+  .wrapper {
+    margin: 0 10px;
+  }
 }

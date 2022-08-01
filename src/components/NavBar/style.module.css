@@ -14,3 +14,9 @@
 .app_name {
   font-weight: 600;
 }
+
+@media only screen and (max-width: 600px) {
+  .wrapper {
+    margin: 0 10px;
+  }
+}

@@ -2,7 +2,10 @@
 
 html,
 body {
+  color: #393d47;
+
   font-family: 'Montserrat';
+  font-display: swap;
 }
 
 body {

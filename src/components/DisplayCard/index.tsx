@@ -27,20 +27,24 @@ const DisplayCard = () => {
     <div ref={localComponentRef} className={styles.wrapper}>
       <div className={styles.top_section_wrapper}>
         <div className={styles.qr_code_wrapper}>
-          <QRCodeCanvas value={value} />
+          <QRCodeCanvas value={value} fgColor={'#393d47'} />
         </div>
         <div className={styles.info_wrapper}>
+          {settingsData.ssid.trim() === '' && (
+            <span className={styles.no_data_msg}>Please fill in the form above!</span>
+          )}
           {settingsData.ssid.trim() !== '' && (
             <>
               <span>
                 <span className={styles.info_title}>WiFi</span>&nbsp;<span>{settingsData.ssid}</span>
               </span>
-              <span>
-                <span className={styles.info_title}>Password</span>&nbsp;<span>{settingsData.password}</span>
-              </span>
+              {!settingsData.hidePasswordInCard && settingsData.password.trim() !== '' && (
+                <span>
+                  <span className={styles.info_title}>Password</span>&nbsp;<span>{settingsData.password}</span>
+                </span>
+              )}
             </>
           )}
-          {settingsData.ssid.trim() === '' && <span>Please fill in the form above!</span>}
         </div>
       </div>
       <hr />

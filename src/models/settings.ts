@@ -3,4 +3,6 @@ export type SettingsData = {
   password: string
   hiddenSSID: boolean
   authenticationType: string
+
+  hidePasswordInCard: boolean
 }

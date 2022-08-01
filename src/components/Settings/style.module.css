@@ -55,3 +55,24 @@
 .print_button:active {
   background-color: rgb(91, 193, 233);
 }
+
+.print_button:disabled {
+  cursor: not-allowed;
+
+  border-color: gray;
+
+  color: gray;
+  background-color: #fff;
+}
+
+.required {
+  font-weight: normal;
+
+  color: red;
+}
+
+@media only screen and (max-width: 600px) {
+  .wrapper {
+    margin: 0 10px;
+  }
+}

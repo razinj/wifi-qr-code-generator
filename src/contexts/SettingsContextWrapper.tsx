@@ -13,6 +13,7 @@ const SettingsContextWrapper: FC<{ children: ReactNode }> = ({ children }) => {
     password: '',
     hiddenSSID: false,
     authenticationType: '',
+    hidePasswordInCard: false,
   })
 
   const updateSettingsData = (data: SettingsData) => {

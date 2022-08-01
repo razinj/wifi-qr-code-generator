@@ -1,7 +1,7 @@
 // React
 import { FC, ChangeEvent, useContext } from 'react'
 // React to Print
-import ReactToPrint from 'react-to-print'
+import { useReactToPrint } from 'react-to-print'
 // Contexts
 import { SettingsContext } from '../../contexts/SettingsContext'
 // Style
@@ -26,16 +26,36 @@ const Settings: FC = () => {
     updateSettingsData({ ...settingsData, authenticationType: event.target.value })
   }
 
+  const updateHidePassword = (event: ChangeEvent<HTMLInputElement>) => {
+    updateSettingsData({ ...settingsData, hidePasswordInCard: event.target.checked })
+  }
+
+  const handlePrint = useReactToPrint({
+    content: () => displayCardComponentRef.current,
+    documentTitle: `${settingsData.ssid} - WiFi QR Code`,
+    removeAfterPrint: true,
+    copyStyles: true,
+    bodyClass: 'print_content',
+    pageStyle: `
+    .print_content {
+      width: 600px;
+      margin: 10px;
+    }
+    `,
+  })
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.section_wrapper}>
         <span>Basic Info</span>
         <div className={`${styles.input_wrapper} ${styles.text_input_wrapper}`}>
-          <label htmlFor='ssid'>SSID:</label>
+          <label htmlFor='ssid'>
+            SSID<span className={styles.required}>*</span>
+          </label>
           <input type='text' id='ssid' value={settingsData.ssid} onChange={updateSSID} />
         </div>
         <div className={`${styles.input_wrapper} ${styles.text_input_wrapper}`}>
-          <label htmlFor='password'>Password:</label>
+          <label htmlFor='password'>Password</label>
           <input type='text' id='password' value={settingsData.password} onChange={updatePassword} />
         </div>
       </div>
@@ -44,12 +64,24 @@ const Settings: FC = () => {
         <span>Configuration</span>
         <div className={styles.input_wrapper}>
           <input id='hiddenSSID' type='checkbox' name='hiddenSSID' onChange={updateHiddenSSID} />
-          <label htmlFor='hiddenSSID'>Hide SSID</label>
+          <label htmlFor='hiddenSSID'>Hidden SSID</label>
+        </div>
+        <div className={styles.input_wrapper}>
+          <input
+            id='hidePassword'
+            type='checkbox'
+            name='hidePassword'
+            onChange={updateHidePassword}
+            value={`${settingsData.hidePasswordInCard}`}
+          />
+          <label htmlFor='hidePassword'>Hide password in card</label>
         </div>
       </div>
 
       <div className={styles.section_wrapper}>
-        <span>Authentication Type</span>
+        <span>
+          Authentication Type<span className={styles.required}>*</span>
+        </span>
         <div className={styles.radio_input}>
           <input type='radio' id='auth_type_wep' name='auth_type' value='WEP' onChange={updateAuthType} />
           <label htmlFor='auth_type_wep'>WEP</label>
@@ -65,10 +97,13 @@ const Settings: FC = () => {
       </div>
 
       <div className={styles.button_wrapper}>
-        <ReactToPrint
-          trigger={() => <button className={styles.print_button}>print</button>}
-          content={() => displayCardComponentRef.current}
-        />
+        <button
+          onClick={handlePrint}
+          className={styles.print_button}
+          disabled={settingsData.ssid === '' || settingsData.authenticationType === ''}
+        >
+          print
+        </button>
       </div>
     </div>
   )

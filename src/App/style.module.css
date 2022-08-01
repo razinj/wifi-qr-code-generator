@@ -10,3 +10,9 @@
   row-gap: 10px;
   flex-direction: column;
 }
+
+@media only screen and (max-width: 600px) {
+  .wrapper {
+    width: auto;
+  }
+}
