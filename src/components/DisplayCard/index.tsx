@@ -4,19 +4,23 @@ import { useContext, useEffect, useRef, useState } from 'react'
 import { QRCodeCanvas } from 'qrcode.react'
 // Contexts
 import { SettingsContext } from '../../contexts/SettingsContext'
+// Utils
+import { escapeChars } from '../../utils/string'
 // Style
 import styles from './style.module.css'
 
 const DisplayCard = () => {
-  const { settingsData, updateDisplayCardComponentRef } = useContext(SettingsContext)
-  const [value, setValue] = useState<string>('')
-
   const localComponentRef = useRef(null)
+  const [value, setValue] = useState<string>('')
+  const { settingsData, updateDisplayCardComponentRef } = useContext(SettingsContext)
 
   useEffect(() => {
-    const localValue = `WIFI:T:${settingsData.authenticationType};S:${settingsData.ssid};P:${settingsData.password};H:${settingsData.hiddenSSID}`
-    setValue(localValue.concat(';;'))
-    console.log('QR code value: ', localValue.concat(';;'))
+    const { ssid, password, authenticationType, hiddenSSID } = settingsData
+
+    const escapedSSID = escapeChars(ssid)
+    const escapedPassword = escapeChars(password)
+
+    setValue(`WIFI:T:${authenticationType};S:${escapedSSID};P:${escapedPassword};H:${hiddenSSID};;`)
   }, [settingsData])
 
   useEffect(() => {
@@ -30,15 +34,13 @@ const DisplayCard = () => {
           <QRCodeCanvas value={value} fgColor={'#393d47'} />
         </div>
         <div className={styles.info_wrapper}>
-          {settingsData.ssid.trim() === '' && (
-            <span className={styles.no_data_msg}>Please fill in the form above!</span>
-          )}
-          {settingsData.ssid.trim() !== '' && (
+          {settingsData.ssid === '' && <span className={styles.no_data_msg}>Please fill in the form above!</span>}
+          {settingsData.ssid !== '' && (
             <>
               <span>
                 <span className={styles.info_title}>WiFi</span>&nbsp;<span>{settingsData.ssid}</span>
               </span>
-              {!settingsData.hidePasswordInCard && settingsData.password.trim() !== '' && (
+              {!settingsData.hidePasswordInCard && settingsData.password !== '' && (
                 <span>
                   <span className={styles.info_title}>Password</span>&nbsp;<span>{settingsData.password}</span>
                 </span>

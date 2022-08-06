@@ -1,4 +1,6 @@
+// React
 import { MutableRefObject } from 'react'
+// Models
 import { SettingsData } from './settings'
 
 export type SettingsContextType = {
